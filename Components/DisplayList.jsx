@@ -75,7 +75,7 @@ export default function DisplayList({ numColumns }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
   productContainer: {
     flex: 1,

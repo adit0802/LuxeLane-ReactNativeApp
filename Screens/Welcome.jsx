@@ -38,10 +38,7 @@ export default function Welcome() {
         </View>
         <View style={{ marginTop: 70 }} />
       </KeyboardAvoidingView>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("HomeScreen")}
-        style={{ marginTop: 10 }}
-      >
+      <TouchableOpacity style={{ marginTop: 10 }}>
         <Text
           style={{
             color: "#FAF7F4",

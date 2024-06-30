@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -8,30 +8,60 @@ import {
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = await AsyncStorage.getItem("authToken");
+        if (token) {
+          navigation.replace("Main");
+        }
+      } catch (err) {
+        console.log("error message", err);
+      }
+    };
+    checkLoginStatus();
+  }, []);
+
   const navigation = useNavigation();
 
-  const Submit = () => {
-    if (!email.includes("@")) {
-      setErrorMessage("Invalid email address");
-      return;
-    }
-    if (password.length < 6) {
-      setErrorMessage("Password must be at least 6 characters long");
-      return;
-    }
-    setErrorMessage("");
-    console.log("Form submitted successfully", { email, password });
-    navigation.navigate("HomeScreen");
+  const handleLogin = () => {
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    axios
+      .post("http://192.168.29.108:8000/Login", user)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        AsyncStorage.setItem("authToken", token);
+        navigation.replace("Main");
+      })
+      .catch((error) => {
+        if (!email.includes("@")) {
+          setErrorMessage("Invalid email address");
+          return;
+        }
+        if (password.length < 6) {
+          setErrorMessage("Password must be at least 6 characters long");
+          return;
+        }
+        console.log(error);
+      });
   };
 
   return (
@@ -116,9 +146,11 @@ export default function Login() {
       <View>
         {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
       </View>
-      <TouchableOpacity style={styles.button} onPress={() => Submit()}>
+
+      <TouchableOpacity onPress={handleLogin} style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => navigation.navigate("Register")}
         style={{ marginTop: 10 }}

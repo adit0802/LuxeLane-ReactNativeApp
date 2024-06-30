@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  ImageBackground,
 } from "react-native";
 
 export default function Category() {
@@ -71,8 +70,8 @@ export default function Category() {
 }
 const styles = StyleSheet.create({
   categoryContainer: {
-    marginTop: 10,
     paddingVertical: 10,
+    backgroundColor: "white",
   },
   categoryItem: {
     alignItems: "center",
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   categoryText: {
-    color: "white",
+    color: "black",
     fontSize: 14,
   },
   image: {

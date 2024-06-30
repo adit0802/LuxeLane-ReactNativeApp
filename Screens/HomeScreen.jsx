@@ -11,10 +11,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import DisplayList from "../Components/DisplayList";
 import Category from "../Components/Category";
-// import Category from "../Components/Category"; // Assuming Category is not being used for now
 
 const HomeScreen = () => {
-  const [numColumns, setNumColumns] = useState(1); // State to control number of columns
+  const [numColumns, setNumColumns] = useState(1);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,7 +46,7 @@ const HomeScreen = () => {
       <View style={styles.separator} />
 
       <ScrollView>
-        {/* <Category /> */}
+        <Category />
         <View style={styles.separator} />
         <DisplayList numColumns={numColumns} />
       </ScrollView>
