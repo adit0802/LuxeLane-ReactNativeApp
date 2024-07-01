@@ -15,6 +15,8 @@ import Account from "../Screens/Account";
 import ProductInfoScreen from "../Screens/ProductInfoScreen";
 import CartScreen from "../Screens/CartScreen";
 import Wishlist from "../Screens/Wishlist";
+import CheckoutScreen from "../Screens/CheckoutScreen";
+import CustomInputField from "../Components/CustomInputField";
 
 export default function StackNavigator() {
   const Stack = createNativeStackNavigator();
@@ -114,6 +116,10 @@ export default function StackNavigator() {
           component={ProductInfoScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="Wishlist" component={Wishlist} />
+        <Stack.Screen name="CustomInputField" component={CustomInputField} />
       </Stack.Navigator>
     </NavigationContainer>
   );

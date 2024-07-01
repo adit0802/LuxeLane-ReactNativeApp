@@ -21,19 +21,19 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      try {
-        const token = await AsyncStorage.getItem("authToken");
-        if (token) {
-          navigation.replace("Main");
-        }
-      } catch (err) {
-        console.log("error message", err);
-      }
-    };
-    checkLoginStatus();
-  }, []);
+  // useEffect(() => {
+  //   const checkLoginStatus = async () => {
+  //     try {
+  //       const token = await AsyncStorage.getItem("authToken");
+  //       if (token) {
+  //         navigation.replace("Main");
+  //       }
+  //     } catch (err) {
+  //       console.log("error message", err);
+  //     }
+  //   };
+  //   checkLoginStatus();
+  // }, []);
 
   const navigation = useNavigation();
 

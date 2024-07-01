@@ -47,6 +47,7 @@ export default function Welcome() {
             marginTop: 20,
             marginBottom: 10,
           }}
+          // onPress={() => navigation.navigate("CustomInputField")}
         >
           Know More
         </Text>

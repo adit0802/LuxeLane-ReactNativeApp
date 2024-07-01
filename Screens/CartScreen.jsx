@@ -1,3 +1,4 @@
+// CartScreen.js
 import React, { useContext } from "react";
 import {
   View,
@@ -7,18 +8,24 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { CartContext } from "../Components/CartContext";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
 
 export default function CartScreen() {
   const route = useRoute();
+  const navigation = useNavigation();
   const { cart, dispatch } = useContext(CartContext);
 
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
+  };
+
+  const handleBuyNow = () => {
+    navigation.navigate("Checkout");
   };
 
   return (
@@ -57,6 +64,11 @@ export default function CartScreen() {
           />
         )}
       </ScrollView>
+      {cart.length > 0 && (
+        <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
+          <Text style={styles.buyNowButtonText}>Buy Now</Text>
+        </TouchableOpacity>
+      )}
     </SafeAreaView>
   );
 }
@@ -109,5 +121,20 @@ const styles = StyleSheet.create({
   locationText: {
     fontSize: 15,
     fontWeight: "500",
+  },
+  buyNowButton: {
+    position: "absolute",
+    bottom: 20,
+    left: 20,
+    right: 20,
+    backgroundColor: "#FF6347",
+    padding: 15,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  buyNowButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
   },
 });

@@ -13,6 +13,7 @@ import {
 import { AntDesign, Feather, Entypo } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { CartContext } from "../Components/CartContext";
+import { WishlistContext } from "../Components/WishListContext";
 
 export default function ProductInfoScreen() {
   const route = useRoute();
@@ -20,10 +21,16 @@ export default function ProductInfoScreen() {
   const [isPressed, setIsPressed] = useState(false);
 
   const onPress = () => {
-    setIsPressed((prevState) => !prevState);
+    if (isPressed) {
+      wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
+    } else {
+      wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: item });
+    }
+    setIsPressed(!isPressed);
   };
 
   const { cart, dispatch } = useContext(CartContext);
+  const { dispatch: wishlistDispatch } = useContext(WishlistContext);
 
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
@@ -32,7 +39,13 @@ export default function ProductInfoScreen() {
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   };
+  const addToWishlist = (product) => {
+    wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: product });
+  };
 
+  const removeFromWishlist = (product) => {
+    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: product });
+  };
   const item = route.params;
 
   return (
