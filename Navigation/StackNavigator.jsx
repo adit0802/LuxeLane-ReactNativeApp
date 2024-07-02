@@ -119,7 +119,11 @@ export default function StackNavigator() {
         <Stack.Screen name="Checkout" component={CheckoutScreen} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Wishlist" component={Wishlist} />
-        <Stack.Screen name="CustomInputField" component={CustomInputField} />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
