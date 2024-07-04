@@ -10,6 +10,7 @@ import {
 import { ProfileContext } from "../Components/ProfileContext";
 import { Avatar } from "react-native-elements";
 import ImagePickerExample from "../Components/ImagePickerExample";
+import CustomInput from "../Components/CustomInput";
 
 export default function EditProfileScreen({ navigation }) {
   const { profile, setProfile } = useContext(ProfileContext);
@@ -38,12 +39,12 @@ export default function EditProfileScreen({ navigation }) {
       </View>
       <View style={styles.form}>
         <Text style={styles.label}>Name</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={setName}
-          placeholder="Enter your name"
+        <CustomInput
+          setValue={setName}
+          placeholder="Change your name here"
           placeholderTextColor="#888"
+          radius={8}
+          width="100%"
         />
         <TouchableOpacity style={styles.button} onPress={handleSave}>
           <Text style={styles.buttonText}>Save</Text>

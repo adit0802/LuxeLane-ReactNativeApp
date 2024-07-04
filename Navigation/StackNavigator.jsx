@@ -16,9 +16,7 @@ import ProductInfoScreen from "../Screens/ProductInfoScreen";
 import CartScreen from "../Screens/CartScreen";
 import Wishlist from "../Screens/Wishlist";
 import CheckoutScreen from "../Screens/CheckoutScreen";
-import CustomInputField from "../Components/CustomInputField";
 import EditProfileScreen from "../Screens/EditProfileScreen";
-import AccountScreen from "../Screens/Account";
 
 export default function StackNavigator() {
   const Stack = createNativeStackNavigator();
