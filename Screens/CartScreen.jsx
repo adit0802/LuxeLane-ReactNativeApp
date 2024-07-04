@@ -1,19 +1,18 @@
-// CartScreen.js
 import React, { useContext } from "react";
 import {
   View,
   Text,
   FlatList,
-  Button,
   StyleSheet,
   Image,
   ScrollView,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import { CartContext } from "../Components/CartContext";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 
 export default function CartScreen() {
   const route = useRoute();
@@ -22,6 +21,14 @@ export default function CartScreen() {
 
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
+  };
+
+  const incrementQuantity = (product) => {
+    dispatch({ type: "INCREMENT_QUANTITY", payload: product });
+  };
+
+  const decrementQuantity = (product) => {
+    dispatch({ type: "DECREMENT_QUANTITY", payload: product });
   };
 
   const handleBuyNow = () => {
@@ -45,20 +52,36 @@ export default function CartScreen() {
                   style={styles.itemImage}
                   resizeMode="contain"
                 />
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemPrice}>$ {item.price}</Text>
-                <View style={styles.location}>
-                  <Entypo name="location-pin" size={22} color="black" />
-                  <Text style={styles.locationText}>
-                    Deliver to Aditya - 751006
-                  </Text>
-                </View>
+                <View style={styles.itemDetails}>
+                  <Text style={styles.itemTitle}>{item.title}</Text>
+                  <Text style={styles.itemPrice}>$ {item.price}</Text>
+                  <View style={styles.location}>
+                    <Entypo name="location-pin" size={22} color="black" />
+                    <Text style={styles.locationText}>
+                      Deliver to Aditya - 751006
+                    </Text>
+                  </View>
 
-                <Button
-                  title="Remove from Cart"
+                  <View style={styles.quantityContainer}>
+                    <Button
+                      title="-"
+                      onPress={() => decrementQuantity(item)}
+                      color="#FF6347"
+                    />
+                    <Text style={styles.quantityText}>{item.quantity}</Text>
+                    <Button
+                      title="+"
+                      onPress={() => incrementQuantity(item)}
+                      color="#FF6347"
+                    />
+                  </View>
+                </View>
+                <TouchableOpacity
+                  style={styles.deleteButton}
                   onPress={() => removeFromCart(item)}
-                  color="#FF6347"
-                />
+                >
+                  <MaterialIcons name="delete" size={24} color="#FF6347" />
+                </TouchableOpacity>
               </View>
             )}
           />
@@ -66,7 +89,7 @@ export default function CartScreen() {
       </ScrollView>
       {cart.length > 0 && (
         <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
-          <Text style={styles.buyNowButtonText}>Buy Now</Text>
+          <Text style={styles.buyNowButtonText}>Checkout</Text>
         </TouchableOpacity>
       )}
     </SafeAreaView>
@@ -90,6 +113,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   card: {
+    flexDirection: "row",
     backgroundColor: "#fff",
     borderRadius: 8,
     padding: 16,
@@ -98,10 +122,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 3,
+    alignItems: "center",
   },
   itemImage: {
-    width: "100%",
-    height: 200,
+    width: 100,
+    height: 100,
+  },
+  itemDetails: {
+    flex: 1,
+    marginLeft: 10,
   },
   itemTitle: {
     fontSize: 18,
@@ -115,12 +144,27 @@ const styles = StyleSheet.create({
   location: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 5,
-    padding: 10,
+    padding: 5,
   },
   locationText: {
     fontSize: 15,
     fontWeight: "500",
+  },
+  quantityContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 100,
+    marginVertical: 10,
+  },
+  quantityText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginHorizontal: 10,
+  },
+  deleteButton: {
+    padding: 10,
+    marginTop: 120,
   },
   buyNowButton: {
     position: "absolute",

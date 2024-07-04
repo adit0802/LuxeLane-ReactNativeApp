@@ -1,29 +1,59 @@
-// CheckoutScreen.js
 import React, { useContext } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Image,
+  Button,
+  Alert,
+} from "react-native";
 import { CartContext } from "../Components/CartContext";
 
 export default function CheckoutScreen() {
   const { cart } = useContext(CartContext);
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  const handleGoToPayment = () => {
+    Alert.alert(
+      "Proceed to Payment",
+      "This will take you to the payment screen."
+    );
+    // Navigation to payment screen logic goes here
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Checkout</Text>
       <FlatList
         data={cart}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.itemPrice}>$ {item.price}</Text>
+          <View style={styles.card}>
+            <Image
+              source={{ uri: item.image }}
+              style={styles.image}
+              resizeMode="contain"
+            />
+            <View style={styles.infoContainer}>
+              <Text style={styles.productTitle}>{item.title}</Text>
+              <Text style={styles.productPrice}>$ {item.price}</Text>
+              <Text style={styles.productQuantity}>
+                Quantity: {item.quantity}
+              </Text>
+            </View>
           </View>
         )}
       />
-      <Text style={styles.totalPrice}>
-        Total Price: $ {totalPrice.toFixed(2)}
-      </Text>
+      <View style={styles.footer}>
+        <Text style={styles.totalPrice}>
+          Total Price: $ {totalPrice.toFixed(2)}
+        </Text>
+        <Button title="Go to Payment" onPress={handleGoToPayment} />
+      </View>
     </View>
   );
 }
@@ -34,23 +64,51 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#fff",
   },
-  headerText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
+  card: {
+    flexDirection: "row",
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
   },
-  item: {
-    marginBottom: 16,
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
   },
-  itemTitle: {
-    fontSize: 18,
+  infoContainer: {
+    flex: 1,
+    paddingLeft: 10,
   },
-  itemPrice: {
+  productTitle: {
     fontSize: 16,
+    fontWeight: "500",
+  },
+  productPrice: {
+    fontSize: 19,
+    marginTop: 8,
+    fontWeight: "600",
+  },
+  productQuantity: {
+    fontSize: 16,
+    marginTop: 8,
+  },
+  footer: {
+    marginBottom: 5,
+    padding: 5,
+    borderTopWidth: 1,
+    borderColor: "#ddd",
+    alignItems: "center",
+    flexDirection: "row",
   },
   totalPrice: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
-    marginTop: 16,
+    marginRight: 50,
   },
 });

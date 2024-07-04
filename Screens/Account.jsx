@@ -1,20 +1,24 @@
-// ProfileScreen.js
-import React from "react";
+import React, { useContext } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ProfileContext } from "../Components/ProfileContext";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Avatar, Icon } from "react-native-elements";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ProfileScreen({ navigation }) {
+export default function AccountScreen() {
+  const { profile } = useContext(ProfileContext);
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Avatar
           rounded
           size="large"
-          source={{ uri: "https://example.com/path/to/avatar.jpg" }}
+          source={{ uri: profile.avatarUrl }}
           containerStyle={styles.avatar}
         />
-        <Text style={styles.name}>Aditya</Text>
+        <Text style={styles.name}>{profile.name}</Text>
       </View>
       <View style={styles.menu}>
         <TouchableOpacity
@@ -31,19 +35,20 @@ export default function ProfileScreen({ navigation }) {
           <Icon name="favorite" type="material" size={24} />
           <Text style={styles.menuItemText}>Wishlist</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("Settings")}
-        >
+        <TouchableOpacity style={styles.menuItem}>
           <Icon name="settings" type="material" size={24} />
           <Text style={styles.menuItemText}>Settings</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("HelpCenter")}
-        >
+        <TouchableOpacity style={styles.menuItem}>
           <Icon name="help-outline" type="material" size={24} />
           <Text style={styles.menuItemText}>Help Center</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate("EditProfile")}
+        >
+          <Icon name="edit" type="material" size={24} />
+          <Text style={styles.menuItemText}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
           <Icon name="logout" type="material" size={24} />
@@ -66,6 +71,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     marginBottom: 16,
+    width: 150,
+    height: 150,
   },
   name: {
     fontSize: 24,
