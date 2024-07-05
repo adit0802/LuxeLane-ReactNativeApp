@@ -17,6 +17,8 @@ import CartScreen from "../Screens/CartScreen";
 import Wishlist from "../Screens/Wishlist";
 import CheckoutScreen from "../Screens/CheckoutScreen";
 import EditProfileScreen from "../Screens/EditProfileScreen";
+import AddAddressScreen from "../Screens/AddAddressScreen";
+import AddressScreen from "../Screens/AddressScreen";
 
 export default function StackNavigator() {
   const Stack = createNativeStackNavigator();
@@ -124,6 +126,16 @@ export default function StackNavigator() {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Address"
+          component={AddAddressScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Add"
+          component={AddressScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

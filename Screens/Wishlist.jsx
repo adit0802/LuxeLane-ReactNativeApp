@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D0B49F",
   },
   btnText: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
   },
   headerText: {

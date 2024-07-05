@@ -7,6 +7,7 @@ import {
   Image,
   Button,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 import { CartContext } from "../Components/CartContext";
 
@@ -50,9 +51,12 @@ export default function CheckoutScreen() {
       />
       <View style={styles.footer}>
         <Text style={styles.totalPrice}>
-          Total Price: $ {totalPrice.toFixed(2)}
+          Total Price: ₹ {totalPrice.toFixed(2)}
         </Text>
-        <Button title="Go to Payment" onPress={handleGoToPayment} />
+        {/* <Button title="Go to Payment" onPress={handleGoToPayment} /> */}
+        <TouchableOpacity style={styles.btn} onPress={handleGoToPayment}>
+          <Text style={{ fontWeight: "bold" }}>Go to Payment</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -75,6 +79,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 5,
     elevation: 5,
+  },
+  btn: {
+    padding: 12,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#D0B49F",
+    flexDirection: "row",
+    marginLeft: 10,
   },
   image: {
     width: 100,

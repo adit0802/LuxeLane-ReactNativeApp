@@ -83,7 +83,7 @@ export default function ProductInfoScreen() {
 
       <View style={{ padding: 10 }}>
         <Text style={styles.productTitle}>{item.title}</Text>
-        <Text style={styles.productPrice}>$ {item.price}</Text>
+        <Text style={styles.productPrice}>₹ {item.price}</Text>
       </View>
 
       <View style={styles.separator} />
@@ -108,7 +108,7 @@ export default function ProductInfoScreen() {
       <View style={styles.separator} />
 
       <View style={{ padding: 10 }}>
-        <Text style={styles.totalPrice}>Total: $ {item.price}</Text>
+        <Text style={styles.totalPrice}>Total: ₹ {item.price}</Text>
         <Text style={styles.deliveryText}>
           Free Delivery Tomorrow by 3 PM Order within 18hrs 30 mins
         </Text>
@@ -179,7 +179,11 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: "black",
+    // backgroundColor: "black",
+    marginBottom: 5,
+    // padding: 5,
+    borderTopWidth: 1,
+    borderColor: "#ddd",
   },
   productTitle: {
     fontSize: 16,

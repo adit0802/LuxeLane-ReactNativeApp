@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -10,6 +10,9 @@ import {
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { WishlistContext } from "./WishListContext";
+import { CartContext } from "./CartContext";
 export default function ProductItem({ item }) {
   const navigation = useNavigation();
 
@@ -17,7 +20,27 @@ export default function ProductItem({ item }) {
 
   const onPress = () => {
     setIsPressed((prevState) => !prevState);
+    if (isPressed) {
+      wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
+    } else {
+      wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: item });
+    }
+    setIsPressed(!isPressed);
   };
+  const { cart, dispatch } = useContext(CartContext);
+
+  const { dispatch: wishlistDispatch } = useContext(WishlistContext);
+  const addToCart = (product) => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+  const addToWishlist = (product) => {
+    wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: product });
+  };
+
+  const removeFromWishlist = (product) => {
+    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: product });
+  };
+
   return (
     <Pressable
       style={styles.container}
@@ -52,7 +75,7 @@ export default function ProductItem({ item }) {
         }}
       >
         <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-          $ {item?.price}
+          ₹ {item?.price}
         </Text>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
           {item?.rating?.rate} <Entypo name="star" size={18} color="green" />
@@ -66,11 +89,14 @@ export default function ProductItem({ item }) {
           justifyContent: "space-between",
         }}
       >
-        <Pressable style={styles.btn}>
+        {/* <Pressable style={styles.btn}>
           <Text>Buy Now</Text>
-        </Pressable>
-        <Pressable style={styles.btn}>
-          <Text>Add to Cart</Text>
+        </Pressable> */}
+        <Pressable style={styles.btn} onPress={() => addToCart(item)}>
+          <FontAwesome name="cart-plus" size={20} color="black" />
+          <Text style={{ fontWeight: "bold", marginLeft: 5, color: "black" }}>
+            Add to Cart
+          </Text>
         </Pressable>
       </View>
     </Pressable>
@@ -88,12 +114,13 @@ const styles = StyleSheet.create({
   },
   btn: {
     padding: 10,
-    borderRadius: 20,
+    borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 5,
     marginTop: 8,
     backgroundColor: "#D0B49F",
+    flexDirection: "row",
+    marginLeft: 18,
   },
   likebtn: {
     marginRight: 0,

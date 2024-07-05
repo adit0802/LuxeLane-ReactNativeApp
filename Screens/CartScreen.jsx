@@ -54,7 +54,7 @@ export default function CartScreen() {
                 />
                 <View style={styles.itemDetails}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
-                  <Text style={styles.itemPrice}>$ {item.price}</Text>
+                  <Text style={styles.itemPrice}>₹ {item.price}</Text>
                   <View style={styles.location}>
                     <Entypo name="location-pin" size={22} color="black" />
                     <Text style={styles.locationText}>
@@ -63,24 +63,26 @@ export default function CartScreen() {
                   </View>
 
                   <View style={styles.quantityContainer}>
-                    <Button
-                      title="-"
+                    <TouchableOpacity
+                      style={{ backgroundColor: "#D0B49F", padding: 8 }}
                       onPress={() => decrementQuantity(item)}
-                      color="#FF6347"
-                    />
+                    >
+                      <Text>-</Text>
+                    </TouchableOpacity>
                     <Text style={styles.quantityText}>{item.quantity}</Text>
-                    <Button
-                      title="+"
+                    <TouchableOpacity
+                      style={{ backgroundColor: "#D0B49F", padding: 8 }}
                       onPress={() => incrementQuantity(item)}
-                      color="#FF6347"
-                    />
+                    >
+                      <Text>+</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <TouchableOpacity
                   style={styles.deleteButton}
                   onPress={() => removeFromCart(item)}
                 >
-                  <MaterialIcons name="delete" size={24} color="#FF6347" />
+                  <MaterialIcons name="delete" size={24} color="#D0B49F" />
                 </TouchableOpacity>
               </View>
             )}
@@ -171,14 +173,14 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 20,
     right: 20,
-    backgroundColor: "#FF6347",
+    backgroundColor: "#D0B49F",
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
   },
   buyNowButtonText: {
     fontSize: 18,
-    color: "#fff",
+    color: "black",
     fontWeight: "bold",
   },
 });
