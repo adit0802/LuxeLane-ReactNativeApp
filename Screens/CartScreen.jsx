@@ -34,7 +34,7 @@ export default function CartScreen() {
   };
 
   const handleBuyNow = () => {
-    navigation.navigate("Checkout");
+    navigation.navigate("Confirm");
   };
 
   return (

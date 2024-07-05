@@ -19,6 +19,8 @@ import CheckoutScreen from "../Screens/CheckoutScreen";
 import EditProfileScreen from "../Screens/EditProfileScreen";
 import AddAddressScreen from "../Screens/AddAddressScreen";
 import AddressScreen from "../Screens/AddressScreen";
+import ConfirmationScreen from "../Screens/ConfirmationScreen";
+import OrderScreen from "../Screens/OrderScreen";
 
 export default function StackNavigator() {
   const Stack = createNativeStackNavigator();
@@ -118,7 +120,7 @@ export default function StackNavigator() {
           component={ProductInfoScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        {/* <Stack.Screen name="Checkout" component={CheckoutScreen} /> */}
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Wishlist" component={Wishlist} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
@@ -136,6 +138,16 @@ export default function StackNavigator() {
         <Stack.Screen
           name="Add"
           component={AddressScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Confirm"
+          component={ConfirmationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Order"
+          component={OrderScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
