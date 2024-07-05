@@ -90,19 +90,7 @@ export default function ProductInfoScreen() {
 
       <View style={{ padding: 10 }}>
         <Text style={styles.descriptionTitle}>Description:</Text>
-        <Text style={styles.descriptionText}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-          laborum optio dolorem illum itaque labore nostrum mollitia
-          exercitationem doloribus, sit corrupti quia animi tempora quaerat
-          libero aliquam dolores recusandae. Enim. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Reprehenderit sunt sit eligendi minus
-          dolore officia iusto exercitationem, illo nemo excepturi similique, ab
-          tenetur consectetur, ad commodi laboriosam dolorem magnam explicabo.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad dicta
-          quaerat consequatur eligendi ratione, illum quae quos cum sint nobis
-          numquam ipsam culpa, tenetur consequuntur dolorum placeat delectus
-          porro harum.
-        </Text>
+        <Text style={styles.descriptionText}>{item.description}</Text>
       </View>
 
       <View style={styles.separator} />

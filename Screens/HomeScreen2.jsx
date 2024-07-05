@@ -84,7 +84,7 @@ const HomeScreen2 = () => {
 
     fetchUser();
   }, []);
-  // console.log("address", addresses);
+  console.log("address", addresses);
   const navigation = useNavigation();
 
   return (

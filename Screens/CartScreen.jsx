@@ -13,11 +13,13 @@ import { CartContext } from "../Components/CartContext";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function CartScreen() {
   const route = useRoute();
   const navigation = useNavigation();
   const { cart, dispatch } = useContext(CartContext);
+  // console.log(cart);
 
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
@@ -64,17 +66,25 @@ export default function CartScreen() {
 
                   <View style={styles.quantityContainer}>
                     <TouchableOpacity
-                      style={{ backgroundColor: "#D0B49F", padding: 8 }}
+                      style={{
+                        borderRadius: 15,
+                      }}
                       onPress={() => decrementQuantity(item)}
                     >
-                      <Text>-</Text>
+                      <AntDesign
+                        name="minuscircleo"
+                        size={22}
+                        color="#cdaa7d"
+                      />
                     </TouchableOpacity>
                     <Text style={styles.quantityText}>{item.quantity}</Text>
                     <TouchableOpacity
-                      style={{ backgroundColor: "#D0B49F", padding: 8 }}
+                      style={{
+                        borderRadius: 15,
+                      }}
                       onPress={() => incrementQuantity(item)}
                     >
-                      <Text>+</Text>
+                      <AntDesign name="pluscircleo" size={22} color="#cdaa7d" />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -82,7 +92,7 @@ export default function CartScreen() {
                   style={styles.deleteButton}
                   onPress={() => removeFromCart(item)}
                 >
-                  <MaterialIcons name="delete" size={24} color="#D0B49F" />
+                  <AntDesign name="delete" size={24} color="#cdaa7d" />
                 </TouchableOpacity>
               </View>
             )}
@@ -119,16 +129,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 8,
     padding: 16,
-    marginVertical: 8,
+    marginVertical: 6,
     shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 3,
     alignItems: "center",
+    marginHorizontal: 2,
   },
   itemImage: {
     width: 100,
     height: 100,
+    marginRight: 10,
   },
   itemDetails: {
     flex: 1,
@@ -146,7 +158,6 @@ const styles = StyleSheet.create({
   location: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 5,
   },
   locationText: {
     fontSize: 15,
@@ -165,7 +176,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   deleteButton: {
-    padding: 10,
     marginTop: 120,
   },
   buyNowButton: {

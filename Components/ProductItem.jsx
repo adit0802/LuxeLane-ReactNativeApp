@@ -51,6 +51,7 @@ export default function ProductItem({ item }) {
           title: item.title,
           price: item.price,
           image: item.image,
+          description: item.description,
         });
       }}
     >

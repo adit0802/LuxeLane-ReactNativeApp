@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-const jwt = require("********");
+const jwt = require("jsonwebtoken");
 
 mongoose
   .connect("mongodb+srv://adit2002:adi2002@cluster0.qf4t6x4.mongodb.net/", {
@@ -38,7 +38,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
     service: "gmail",
     auth: {
       user: "adit2002ad@gmail.com",
-      pass: "uszawwlhiunebaox",
+      pass: "uszawwlhi*****",
     },
   });
 
