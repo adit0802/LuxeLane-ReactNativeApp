@@ -12,39 +12,39 @@ export default function Category() {
   const categories = [
     {
       id: 1,
-      name: "Watches",
+      name: "Men",
       image:
-        "https://images-cdn.ubuy.co.in/64fd2e38349d35789169f805-eeekit-classic-diamond-gold-watches-for.jpg",
+        "https://images.hugoboss.com/is/image/hugobosscsprod/240516_HBME_112_SU24_Tier3_BMO_021_1440x2304?%24large%24&align=0,-1&fit=crop,1&ts=1716548673749&qlt=80&wid=468&hei=782",
     },
     {
       id: 2,
-      name: "Bags",
+      name: "Women",
       image:
-        "https://sugarcrush.in/cdn/shop/files/sugarcrush-crystal-bridal-feather-luxury-bag-black-sugarcrush-3.jpg?v=1688787017&width=3712",
+        "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/22669806/2023/4/6/a0b9772e-e2d4-4b5f-acc3-85f91dc7c4ec1680769432651Tops6.jpg",
     },
     {
       id: 3,
-      name: "Shoes",
+      name: "Jewelery",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfhQvqyD1UenFHC5WohN9w5esQyjyUEjsOcQ&s",
+        "https://images.meesho.com/images/products/16137747/042d4_512.webp",
     },
     {
       id: 4,
-      name: "Accessories",
+      name: "Girls",
       image:
-        "https://madbrown.in/cdn/shop/files/2_67ea2f91-2810-4898-b46a-eaf1cb085adb.webp?v=1701861360",
+        "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/22549588/2023/3/29/6917d1df-f927-41cd-8501-bcddc0b2c80c1680033645620KidsOnBoardYellowPolkaDotPrintCrepeFitFlareDress1.jpg",
     },
     {
       id: 5,
-      name: "Bags",
+      name: "Boys",
       image:
-        "https://sugarcrush.in/cdn/shop/files/sugarcrush-crystal-bridal-feather-luxury-bag-black-sugarcrush-3.jpg?v=1688787017&width=3712",
+        "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/23622502/2023/9/22/5704f738-2681-4252-b403-c2ed5cb79f671695376354306-Alan-Jones-Boys-Colourblocked-Hooded-Sweatshirt-741169537635-1.jpg",
     },
     {
       id: 6,
-      name: "Shoes",
+      name: "Electronics",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfhQvqyD1UenFHC5WohN9w5esQyjyUEjsOcQ&s",
+        "https://i.pinimg.com/564x/5a/bd/9e/5abd9e90488ab0a183fe42f144599c1f.jpg",
     },
   ];
 
@@ -78,9 +78,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   categoryImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 40,
+    width: 80,
+    height: 80,
+    borderRadius: 10,
     marginBottom: 5,
   },
   categoryText: {

@@ -130,7 +130,7 @@ const HomeScreen2 = () => {
               alignItems: "center",
               gap: 5,
               padding: 10,
-              backgroundColor: "#AFEEEE",
+              backgroundColor: "#E8D5B7",
             }}
           >
             <Ionicons name="location-outline" size={24} color="black" />
