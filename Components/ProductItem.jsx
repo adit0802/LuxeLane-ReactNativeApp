@@ -7,6 +7,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -93,12 +94,12 @@ export default function ProductItem({ item }) {
         {/* <Pressable style={styles.btn}>
           <Text>Buy Now</Text>
         </Pressable> */}
-        <Pressable style={styles.btn} onPress={() => addToCart(item)}>
+        <TouchableOpacity style={styles.btn} onPress={() => addToCart(item)}>
           <FontAwesome name="cart-plus" size={20} color="black" />
           <Text style={{ fontWeight: "bold", marginLeft: 5, color: "black" }}>
             Add to Cart
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </Pressable>
   );

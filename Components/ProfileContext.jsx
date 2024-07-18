@@ -4,7 +4,7 @@ export const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
   const [profile, setProfile] = useState({
-    name: "Adi",
+    name: "Amit",
     avatarUrl:
       "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
   });

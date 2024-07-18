@@ -39,7 +39,7 @@ export default function CartScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <View>
         <Text style={styles.headerText}>Cart</Text>
         {cart.length === 0 ? (
           <Text style={styles.emptyText}>Oops! Your cart is empty</Text>
@@ -98,7 +98,7 @@ export default function CartScreen() {
             )}
           />
         )}
-      </ScrollView>
+      </View>
       {cart.length > 0 && (
         <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
           <Text style={styles.buyNowButtonText}>Checkout</Text>

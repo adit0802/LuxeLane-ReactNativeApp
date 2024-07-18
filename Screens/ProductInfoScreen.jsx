@@ -4,7 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   Platform,
-  Pressable,
+  TouchableOpacity,
   TextInput,
   Dimensions,
   ImageBackground,
@@ -39,19 +39,13 @@ export default function ProductInfoScreen() {
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   };
-  const addToWishlist = (product) => {
-    wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: product });
-  };
 
-  const removeFromWishlist = (product) => {
-    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: product });
-  };
   const item = route.params;
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <View style={styles.header}>
-        <Pressable style={styles.searchbar}>
+        <TouchableOpacity style={styles.searchbar}>
           <AntDesign
             name="search1"
             size={22}
@@ -59,7 +53,7 @@ export default function ProductInfoScreen() {
             style={{ marginLeft: 6 }}
           />
           <TextInput placeholder="Search LuxeLane" style={{ flex: 1 }} />
-        </Pressable>
+        </TouchableOpacity>
         <Feather name="mic" size={22} color="black" />
       </View>
 
@@ -73,13 +67,13 @@ export default function ProductInfoScreen() {
         resizeMode="contain"
       />
 
-      <Pressable onPress={onPress} style={styles.likebtn}>
+      <TouchableOpacity onPress={onPress} style={styles.likebtn}>
         {isPressed ? (
           <AntDesign name="heart" size={22} color="red" />
         ) : (
           <AntDesign name="hearto" size={22} color="black" />
         )}
-      </Pressable>
+      </TouchableOpacity>
 
       <View style={{ padding: 10 }}>
         <Text style={styles.productTitle}>{item.title}</Text>
@@ -109,12 +103,12 @@ export default function ProductInfoScreen() {
         <Text style={styles.locationText}>Deliver to Aditya - 751006</Text>
       </View>
 
-      <Pressable style={styles.btn} onPress={() => addToCart(item)}>
+      <TouchableOpacity style={styles.btn} onPress={() => addToCart(item)}>
         <Text>Add to Cart</Text>
-      </Pressable>
-      <Pressable style={styles.btn} onPress={() => removeFromCart(item)}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.btn} onPress={() => removeFromCart(item)}>
         <Text>Remove from Cart</Text>
-      </Pressable>
+      </TouchableOpacity>
 
       <View style={{ marginBottom: 60 }} />
     </ScrollView>
@@ -149,7 +143,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#E0E0E0",
+    backgroundColor: "#D0B49F",
     position: "absolute",
     marginTop: 70,
     marginLeft: 330,
@@ -160,7 +154,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#E0E0E0",
+    backgroundColor: "#D0B49F",
     position: "absolute",
     top: 340,
     left: 10,
